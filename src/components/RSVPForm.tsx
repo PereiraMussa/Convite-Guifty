@@ -6,7 +6,12 @@ import type { RSVPFormData, RSVPFormErrors } from "../types";
 import { ScrollReveal } from "./ScrollReveal";
 import { FloatingHearts } from "./FloatingHearts";
 
-const initialForm: RSVPFormData = { name: "", phone: "", guests: 1, message: "" };
+const initialForm: RSVPFormData = {
+  name: "",
+  phone: "",
+  guests: 1,
+  message: "",
+};
 
 function validate(data: RSVPFormData): RSVPFormErrors {
   const errors: RSVPFormErrors = {};
@@ -37,7 +42,7 @@ export const RSVPForm = forwardRef<HTMLDivElement>((_, ref) => {
     if (Object.keys(validation).length > 0) return;
 
     const message = encodeURIComponent(
-      `Olá! Confirmo a minha presença no casamento. 💍\n\nNome: ${form.name}\nTelefone: ${form.phone}\nAcompanhantes: ${form.guests}\nMensagem: ${form.message || "—"}`
+      `Olá! Confirmo a minha presença no casamento. 💍\n\nNome: ${form.name}\nTelefone: ${form.phone}\nAcompanhantes: ${form.guests}\nMensagem: ${form.message || "—"}`,
     );
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
 
@@ -53,10 +58,11 @@ export const RSVPForm = forwardRef<HTMLDivElement>((_, ref) => {
             Confirme a sua presença
           </span>
           <h2 className="mt-3 font-feature text-3xl italic text-porcelain sm:text-4xl">
-            RSVP
+            Querido(a)
           </h2>
           <p className="mt-3 font-body text-sm font-light text-mist">
-            A sua confirmação é o presente mais especial. Responda até 30 dias antes do grande dia.
+            A sua confirmação é o presente mais especial. Responda até 30 dias
+            antes do grande dia.
           </p>
         </ScrollReveal>
 
@@ -86,7 +92,10 @@ export const RSVPForm = forwardRef<HTMLDivElement>((_, ref) => {
               </button>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="glass flex flex-col gap-5 rounded-2xl px-6 py-10 text-left sm:px-10">
+            <form
+              onSubmit={handleSubmit}
+              className="glass flex flex-col gap-5 rounded-2xl px-6 py-10 text-left sm:px-10"
+            >
               <div>
                 <label className="mb-1.5 block font-body text-[11px] uppercase tracking-[0.25em] text-gold-soft">
                   Nome completo
@@ -98,7 +107,9 @@ export const RSVPForm = forwardRef<HTMLDivElement>((_, ref) => {
                   className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 font-body text-sm text-porcelain outline-none transition-colors focus:border-gold"
                   placeholder="O seu nome"
                 />
-                {errors.name && <p className="mt-1 text-xs text-red-300">{errors.name}</p>}
+                {errors.name && (
+                  <p className="mt-1 text-xs text-red-300">{errors.name}</p>
+                )}
               </div>
 
               <div>
@@ -112,7 +123,9 @@ export const RSVPForm = forwardRef<HTMLDivElement>((_, ref) => {
                   className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 font-body text-sm text-porcelain outline-none transition-colors focus:border-gold"
                   placeholder="+258 84 000 0000"
                 />
-                {errors.phone && <p className="mt-1 text-xs text-red-300">{errors.phone}</p>}
+                {errors.phone && (
+                  <p className="mt-1 text-xs text-red-300">{errors.phone}</p>
+                )}
               </div>
 
               <div>
@@ -124,10 +137,14 @@ export const RSVPForm = forwardRef<HTMLDivElement>((_, ref) => {
                   min={1}
                   max={10}
                   value={form.guests}
-                  onChange={(e) => setForm({ ...form, guests: Number(e.target.value) })}
+                  onChange={(e) =>
+                    setForm({ ...form, guests: Number(e.target.value) })
+                  }
                   className="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 font-body text-sm text-porcelain outline-none transition-colors focus:border-gold"
                 />
-                {errors.guests && <p className="mt-1 text-xs text-red-300">{errors.guests}</p>}
+                {errors.guests && (
+                  <p className="mt-1 text-xs text-red-300">{errors.guests}</p>
+                )}
               </div>
 
               <div>
@@ -137,7 +154,9 @@ export const RSVPForm = forwardRef<HTMLDivElement>((_, ref) => {
                 <textarea
                   rows={3}
                   value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, message: e.target.value })
+                  }
                   className="w-full resize-none rounded-lg border border-white/15 bg-white/5 px-4 py-3 font-body text-sm text-porcelain outline-none transition-colors focus:border-gold"
                   placeholder="Deixe uma mensagem carinhosa para os noivos"
                 />
@@ -150,7 +169,7 @@ export const RSVPForm = forwardRef<HTMLDivElement>((_, ref) => {
                 whileTap={{ scale: 0.97 }}
               >
                 <Send size={15} />
-                Confirmar Presença
+                Confirmar no WhatsApp
               </motion.button>
             </form>
           )}
