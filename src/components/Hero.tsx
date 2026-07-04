@@ -63,6 +63,19 @@ export function Hero({ onRSVPClick }: HeroProps) {
           Com imenso carinho, convidamo-lo a celebrar connosco o início da nossa
           eterna história de amor.
         </motion.p>
+
+        <motion.button
+          type="button"
+          onClick={onRSVPClick}
+          className="mt-4 rounded-full bg-gold px-9 py-3 font-body text-xs uppercase tracking-[0.3em] text-ink shadow-lg shadow-gold/20 transition-transform hover:scale-105"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1, duration: 0.9 }}
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.96 }}
+        >
+          Confirmar Presença
+        </motion.button>
       </div>
 
       <motion.div
